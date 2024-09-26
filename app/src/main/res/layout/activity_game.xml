@@ -27,6 +27,7 @@
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:onClick="option1"
+            android:textSize="18dp"
 
             android:text="Option1" />
 
@@ -38,6 +39,8 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:onClick="option2"
+            android:textSize="18dp"
+
             android:text="Option2" />
 
     </LinearLayout>
@@ -62,6 +65,8 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:onClick="option3"
+            android:textSize="18dp"
+
             android:text="Option3" />
 
         <Button
@@ -72,13 +77,14 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:onClick="option4"
+            android:textSize="18dp"
             android:text="Option4" />
 
     </LinearLayout>
 
     <ImageView
         android:id="@+id/questionFlag"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="279dp"
         android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,6 +103,19 @@
         app:layout_constraintStart_toStartOf="@+id/questionFlag"
         app:layout_constraintTop_toBottomOf="@+id/questionFlag" />
 
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Score: 0"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/questionFlag"
+        app:layout_constraintEnd_toEndOf="@+id/questionFlag"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="@+id/questionFlag"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.742" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

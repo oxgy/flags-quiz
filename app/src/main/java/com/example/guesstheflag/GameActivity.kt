@@ -30,7 +30,8 @@ class GameActivity : AppCompatActivity() {
     private lateinit var currentFlag: String
     private var randomOption: Int? = null
     private var wrongAnswerCount = 3
-
+    var score: Int = 0
+    val pastQuestions = ArrayList<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,7 @@ class GameActivity : AppCompatActivity() {
         countryData = Gson().fromJson(jsonString, CountryData::class.java)
 
         newQuestion()
+
 
 
     }
@@ -72,7 +74,13 @@ class GameActivity : AppCompatActivity() {
 
     fun newQuestion(){
 
-        val randomCountry = randomInts()
+        var randomCountry = randomInts()
+
+        while (pastQuestions.contains(randomCountry.elementAt(0))){
+            randomCountry = randomInts()
+        }
+        pastQuestions.add(randomCountry.elementAt(0))
+
 
         currentFlag = randomCountry.elementAt(0).toString()
         binding.questionFlag.setImageResource(resources.getIdentifier(countryData.data[randomCountry.elementAt(0)].code, "drawable", packageName))
@@ -132,6 +140,7 @@ class GameActivity : AppCompatActivity() {
             binding.option1.setBackgroundColor(Color.rgb(100,255,100))
 
             nQDelay()
+            increaseScore()
         }
         else{
             binding.option1.setBackgroundColor(Color.rgb(255,87,51))
@@ -147,6 +156,7 @@ class GameActivity : AppCompatActivity() {
         if (countryData.data[currentFlag.toInt()].name == binding.option2.text) {
             binding.option2.setBackgroundColor(Color.rgb(100,255,100))
             nQDelay()
+            increaseScore()
         }
         else{
             binding.option2.setBackgroundColor(Color.rgb(255,87,51))
@@ -161,6 +171,7 @@ class GameActivity : AppCompatActivity() {
         if (countryData.data[currentFlag.toInt()].name == binding.option3.text) {
             binding.option3.setBackgroundColor(Color.rgb(100,255,100))
             nQDelay()
+            increaseScore()
         }
         else{
             binding.option3.setBackgroundColor(Color.rgb(255,87,51))
@@ -175,6 +186,7 @@ class GameActivity : AppCompatActivity() {
         if (countryData.data[currentFlag.toInt()].name == binding.option4.text) {
             binding.option4.setBackgroundColor(Color.rgb(100,255,100))
             nQDelay()
+            increaseScore()
         }
         else{
             binding.option4.setBackgroundColor(Color.rgb(255,87,51))
@@ -194,13 +206,20 @@ class GameActivity : AppCompatActivity() {
         if (wrongAnswerCount == 0){
             Toast.makeText(this@GameActivity, "Game Over", Toast.LENGTH_LONG).show()
             val intent = Intent(this@GameActivity, MainActivity::class.java)
+            intent.putExtra("score", score)
             startActivity(intent)
+
             finish()
 
         }
         else{
             Toast.makeText(this@GameActivity, "Remaining ${wrongAnswerCount}",Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun increaseScore (){
+        score++
+        binding.scoreText.text = "Score: ${score}"
     }
 
 

@@ -13,12 +13,18 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.guesstheflag.databinding.ActivityMainBinding
 import com.google.gson.Gson
 import android.util.Log
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import org.json.JSONArray
 import org.json.JSONObject
 import java.nio.charset.StandardCharsets
 import kotlin.concurrent.fixedRateTimer
 import java.io.InputStreamReader
-
+import java.util.prefs.Preferences
+import kotlin.math.max
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +38,9 @@ class MainActivity : AppCompatActivity() {
     private val handler = Handler(Looper.getMainLooper())
 
     private lateinit var countryData: CountryData
+
+
+    var maxScore:Int = 0
 
 
 
@@ -51,6 +60,26 @@ class MainActivity : AppCompatActivity() {
         countryData = Gson().fromJson(jsonString, CountryData::class.java)
 
         startFlagRotation()
+
+        val sharedPreference =  this.getSharedPreferences("com.example.guesstheflag",Context.MODE_PRIVATE)
+        var editor = sharedPreference.edit()
+
+        maxScore = sharedPreference.getInt("maxScore",0)
+
+        val score = intent.getIntExtra("score", 0)
+
+        if (score> maxScore){
+            editor.putInt("maxScore", maxScore)
+            maxScore = score
+        }
+        editor.putInt("lastScore", score)
+        editor.commit()
+
+        binding.maxScore.text = "Max Score: ${maxScore}"
+        binding.lastScore.text = "Last Score: ${score}"
+
+
+
     }
 
 
