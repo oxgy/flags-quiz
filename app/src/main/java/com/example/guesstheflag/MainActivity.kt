@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var countryData: CountryData
 
 
-    var maxScore:Int = 0
+
 
 
 
@@ -64,13 +64,13 @@ class MainActivity : AppCompatActivity() {
         val sharedPreference =  this.getSharedPreferences("com.example.guesstheflag",Context.MODE_PRIVATE)
         var editor = sharedPreference.edit()
 
-        maxScore = sharedPreference.getInt("maxScore",0)
+        var maxScore = sharedPreference.getInt("maxScore",0)
 
         val score = intent.getIntExtra("score", 0)
 
         if (score> maxScore){
-            editor.putInt("maxScore", maxScore)
             maxScore = score
+            editor.putInt("maxScore", maxScore)
         }
         editor.putInt("lastScore", score)
         editor.commit()
