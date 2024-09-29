@@ -135,7 +135,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun option1(view: View){
-        binding.option1.setEnabled(false)
+        disableButtons()
         if (countryData.data[currentFlag.toInt()].name == binding.option1.text) {
             binding.option1.setBackgroundColor(Color.rgb(100,255,100))
 
@@ -151,8 +151,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun option2(view: View){
-        binding.option2.setEnabled(false)
-
+        disableButtons()
         if (countryData.data[currentFlag.toInt()].name == binding.option2.text) {
             binding.option2.setBackgroundColor(Color.rgb(100,255,100))
             nQDelay()
@@ -166,8 +165,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun option3(view: View){
-        binding.option3.setEnabled(false)
-
+        disableButtons()
         if (countryData.data[currentFlag.toInt()].name == binding.option3.text) {
             binding.option3.setBackgroundColor(Color.rgb(100,255,100))
             nQDelay()
@@ -181,8 +179,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun option4(view: View){
-        binding.option4.setEnabled(false)
-
+        disableButtons()
         if (countryData.data[currentFlag.toInt()].name == binding.option4.text) {
             binding.option4.setBackgroundColor(Color.rgb(100,255,100))
             nQDelay()
@@ -193,6 +190,13 @@ class GameActivity : AppCompatActivity() {
             wrongAnswer()
             wrongAnswerCounter()
         }
+    }
+
+    private fun disableButtons(){
+        binding.option1.setEnabled(false)
+        binding.option2.setEnabled(false)
+        binding.option3.setEnabled(false)
+        binding.option4.setEnabled(false)
     }
 
     private fun wrongAnswer(){
