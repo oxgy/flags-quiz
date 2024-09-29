@@ -27,9 +27,9 @@
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:onClick="option1"
-            android:textSize="18dp"
+            android:text="Option1"
 
-            android:text="Option1" />
+            android:textSize="16dp" />
 
         <Button
             android:id="@+id/option2"
@@ -39,9 +39,9 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:onClick="option2"
-            android:textSize="18dp"
+            android:text="Option2"
 
-            android:text="Option2" />
+            android:textSize="16dp" />
 
     </LinearLayout>
 
@@ -65,9 +65,9 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:onClick="option3"
-            android:textSize="18dp"
+            android:text="Option3"
 
-            android:text="Option3" />
+            android:textSize="16dp" />
 
         <Button
             android:id="@+id/option4"
@@ -77,8 +77,8 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:onClick="option4"
-            android:textSize="18dp"
-            android:text="Option4" />
+            android:text="Option4"
+            android:textSize="16dp" />
 
     </LinearLayout>
 
