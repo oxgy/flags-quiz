@@ -1,13 +1,11 @@
 package com.example.guesstheflag
 
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -15,16 +13,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.guesstheflag.databinding.ActivityGameBinding
 import com.google.gson.Gson
-import kotlinx.coroutines.delay
-import java.io.File
 import java.io.InputStreamReader
-import kotlin.random.Random
-import kotlin.random.nextInt
 
 
 class GameActivity : AppCompatActivity() {
 
-
+    private val themeTitleList = arrayOf("Light", "Dark", "Auto (System Default)")
     private lateinit var binding : ActivityGameBinding
     private lateinit var countryData: CountryData
     private lateinit var currentFlag: String
@@ -49,8 +43,6 @@ class GameActivity : AppCompatActivity() {
         countryData = Gson().fromJson(jsonString, CountryData::class.java)
 
         newQuestion()
-
-
 
     }
 
@@ -121,10 +113,17 @@ class GameActivity : AppCompatActivity() {
         binding.option3.setBackgroundColor(Color.rgb(113,111,255))
         binding.option4.setBackgroundColor(Color.rgb(113,111,255))
 
+
         binding.option1.setEnabled(true)
         binding.option2.setEnabled(true)
         binding.option3.setEnabled(true)
         binding.option4.setEnabled(true)
+
+        binding.option1.setTextColor(Color.WHITE)
+        binding.option2.setTextColor(Color.WHITE)
+        binding.option3.setTextColor(Color.WHITE)
+        binding.option4.setTextColor(Color.WHITE)
+
 
     }
 
@@ -136,6 +135,8 @@ class GameActivity : AppCompatActivity() {
 
     fun option1(view: View){
         disableButtons()
+        binding.option1.setTextColor(Color.BLACK)
+
         if (countryData.data[currentFlag.toInt()].name == binding.option1.text) {
             binding.option1.setBackgroundColor(Color.rgb(100,255,100))
 
@@ -152,6 +153,8 @@ class GameActivity : AppCompatActivity() {
 
     fun option2(view: View){
         disableButtons()
+        binding.option2.setTextColor(Color.BLACK)
+
         if (countryData.data[currentFlag.toInt()].name == binding.option2.text) {
             binding.option2.setBackgroundColor(Color.rgb(100,255,100))
             nQDelay()
@@ -166,6 +169,8 @@ class GameActivity : AppCompatActivity() {
 
     fun option3(view: View){
         disableButtons()
+        binding.option3.setTextColor(Color.BLACK)
+
         if (countryData.data[currentFlag.toInt()].name == binding.option3.text) {
             binding.option3.setBackgroundColor(Color.rgb(100,255,100))
             nQDelay()
@@ -180,6 +185,8 @@ class GameActivity : AppCompatActivity() {
 
     fun option4(view: View){
         disableButtons()
+        binding.option4.setTextColor(Color.BLACK)
+
         if (countryData.data[currentFlag.toInt()].name == binding.option4.text) {
             binding.option4.setBackgroundColor(Color.rgb(100,255,100))
             nQDelay()
@@ -226,13 +233,16 @@ class GameActivity : AppCompatActivity() {
         binding.scoreText.text = "Score: ${score}"
     }
 
-
     fun changeCorrectAnswerToGreen(){
         when(randomOption){
-            1 -> binding.option1.setBackgroundColor(Color.rgb(100,255,100))
-            2 -> binding.option2.setBackgroundColor(Color.rgb(100,255,100))
-            3 -> binding.option3.setBackgroundColor(Color.rgb(100,255,100))
-            4 -> binding.option4.setBackgroundColor(Color.rgb(100,255,100))
+            1 -> {binding.option1.setBackgroundColor(Color.rgb(100,255,100))
+                binding.option1.setTextColor(Color.BLACK)}
+            2 -> {binding.option2.setBackgroundColor(Color.rgb(100,255,100))
+                binding.option2.setTextColor(Color.BLACK)}
+            3 -> {binding.option3.setBackgroundColor(Color.rgb(100,255,100))
+                binding.option3.setTextColor(Color.BLACK)}
+            4 -> {binding.option4.setBackgroundColor(Color.rgb(100,255,100))
+                binding.option4.setTextColor(Color.BLACK)}
 
         }
     }
