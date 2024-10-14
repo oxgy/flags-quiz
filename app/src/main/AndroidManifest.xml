@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Guesstheflag"
         tools:targetApi="31">
         <activity
+            android:name=".FinishActivity"
+            android:exported="false" />
+        <activity
             android:name=".GameActivity"
             android:exported="false" />
         <activity

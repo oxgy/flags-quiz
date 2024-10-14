@@ -27,6 +27,7 @@ class GameActivity : AppCompatActivity() {
     var score: Int = 0
     val pastQuestions = ArrayList<Int>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -43,6 +44,7 @@ class GameActivity : AppCompatActivity() {
         countryData = Gson().fromJson(jsonString, CountryData::class.java)
 
         newQuestion()
+
 
     }
 
@@ -61,10 +63,13 @@ class GameActivity : AppCompatActivity() {
         val randoms = generateSequence {
             (0..249).random()
         }.distinct().take(4).toSet()
+
         return randoms
     }
 
     fun newQuestion(){
+
+        score
 
         var randomCountry = randomInts()
 
@@ -72,6 +77,7 @@ class GameActivity : AppCompatActivity() {
             randomCountry = randomInts()
         }
         pastQuestions.add(randomCountry.elementAt(0))
+
 
 
         currentFlag = randomCountry.elementAt(0).toString()
@@ -149,6 +155,11 @@ class GameActivity : AppCompatActivity() {
             wrongAnswerCounter()
         }
 
+        if (pastQuestions.size == 250){
+            val intent = Intent(this@GameActivity, FinishActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     fun option2(view: View){
@@ -164,6 +175,12 @@ class GameActivity : AppCompatActivity() {
             binding.option2.setBackgroundColor(Color.rgb(255,87,51))
             wrongAnswer()
             wrongAnswerCounter()
+        }
+
+        if (pastQuestions.size == 250){
+            val intent = Intent(this@GameActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -181,6 +198,12 @@ class GameActivity : AppCompatActivity() {
             wrongAnswer()
             wrongAnswerCounter()
         }
+
+        if (pastQuestions.size == 250){
+            val intent = Intent(this@GameActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     fun option4(view: View){
@@ -197,6 +220,12 @@ class GameActivity : AppCompatActivity() {
             wrongAnswer()
             wrongAnswerCounter()
         }
+
+        if (pastQuestions.size == 250){
+            val intent = Intent(this@GameActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun disableButtons(){
@@ -209,6 +238,11 @@ class GameActivity : AppCompatActivity() {
     private fun wrongAnswer(){
         changeCorrectAnswerToGreen()
         nQDelay()
+        if (pastQuestions.size == 250){
+            val intent = Intent(this@GameActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
     }
 

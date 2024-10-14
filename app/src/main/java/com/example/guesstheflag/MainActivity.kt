@@ -1,5 +1,4 @@
 package com.example.guesstheflag
-
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,19 +11,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.guesstheflag.databinding.ActivityMainBinding
 import com.google.gson.Gson
-import android.util.Log
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import org.json.JSONArray
-import org.json.JSONObject
-import java.nio.charset.StandardCharsets
-import kotlin.concurrent.fixedRateTimer
 import java.io.InputStreamReader
-import java.util.prefs.Preferences
-import kotlin.math.max
+
 
 
 class MainActivity : AppCompatActivity() {
