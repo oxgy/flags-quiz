@@ -85,9 +85,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun start (view: View){
+    fun normal (view: View){
 
         val intent = Intent(this@MainActivity, GameActivity::class.java)
+        startActivity(intent)
+
+    }
+
+    fun speedRun (view: View){
+
+        val intent = Intent(this@MainActivity, SpeedRunActivity::class.java)
         startActivity(intent)
 
     }

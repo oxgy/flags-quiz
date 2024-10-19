@@ -20,28 +20,42 @@
 
     <Button
         android:id="@+id/startBtn"
-        android:layout_width="158dp"
-        android:layout_height="78dp"
-        android:layout_marginTop="80dp"
-        android:onClick="start"
-        android:text="Start"
+        android:layout_width="175dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="40dp"
+        android:onClick="normal"
+        android:text="Normal Mode"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="@+id/startFlagImage"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="@+id/startFlagImage"
         app:layout_constraintTop_toBottomOf="@+id/startFlagImage" />
+
+    <Button
+        android:id="@+id/speedRunBtn"
+        android:layout_width="175dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="12dp"
+        android:onClick="speedRun"
+        android:text="Speed Run"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/startFlagImage"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/startFlagImage"
+        app:layout_constraintTop_toBottomOf="@+id/startBtn" />
 
     <TextView
         android:id="@+id/maxScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="12dp"
         android:text="Max Score: "
         android:textAlignment="center"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/speedRunBtn" />
 
     <TextView
         android:id="@+id/lastScore"

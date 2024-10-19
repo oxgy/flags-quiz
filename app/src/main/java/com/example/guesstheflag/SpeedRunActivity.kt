@@ -12,13 +12,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.guesstheflag.databinding.ActivityGameBinding
+import com.example.guesstheflag.databinding.ActivitySpeedRunBinding
 import com.google.gson.Gson
 import java.io.InputStreamReader
 
 
-class GameActivity : AppCompatActivity() {
+class SpeedRunActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityGameBinding
+    private lateinit var binding : ActivitySpeedRunBinding
     private lateinit var countryData: CountryData
     private lateinit var currentFlag: String
     private var randomOption: Int? = null
@@ -30,7 +31,7 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityGameBinding.inflate(layoutInflater)
+        binding = ActivitySpeedRunBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -111,51 +112,30 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
-        binding.option1.setBackgroundColor(Color.rgb(113,111,255))
-        binding.option2.setBackgroundColor(Color.rgb(113,111,255))
-        binding.option3.setBackgroundColor(Color.rgb(113,111,255))
-        binding.option4.setBackgroundColor(Color.rgb(113,111,255))
 
 
-        binding.option1.setEnabled(true)
-        binding.option2.setEnabled(true)
-        binding.option3.setEnabled(true)
-        binding.option4.setEnabled(true)
 
-        binding.option1.setTextColor(Color.WHITE)
-        binding.option2.setTextColor(Color.WHITE)
-        binding.option3.setTextColor(Color.WHITE)
-        binding.option4.setTextColor(Color.WHITE)
+
 
 
     }
 
-    private fun nQDelay(){
-        Handler().postDelayed({
-            newQuestion()
-        },1000)
 
-
-    }
 
     fun option1(view: View){
-        disableButtons()
-        binding.option1.setTextColor(Color.BLACK)
 
         if (pastQuestions.size == 250){
-            val intent = Intent(this@GameActivity, FinishActivity::class.java)
+            val intent = Intent(this@SpeedRunActivity, FinishActivity::class.java)
             intent.putExtra("score", score)
             startActivity(intent)
         }
 
         else if (countryData.data[currentFlag.toInt()].name == binding.option1.text) {
-            binding.option1.setBackgroundColor(Color.rgb(100,255,100))
 
-            nQDelay()
+            newQuestion()
             increaseScore()
         }
         else{
-            binding.option1.setBackgroundColor(Color.rgb(255,87,51))
             wrongAnswer()
             wrongAnswerCounter()
         }
@@ -164,22 +144,18 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun option2(view: View){
-        disableButtons()
-        binding.option2.setTextColor(Color.BLACK)
 
         if (pastQuestions.size == 250){
-            val intent = Intent(this@GameActivity, FinishActivity::class.java)
+            val intent = Intent(this@SpeedRunActivity, FinishActivity::class.java)
             intent.putExtra("score", score)
             startActivity(intent)
         }
 
         else if (countryData.data[currentFlag.toInt()].name == binding.option2.text) {
-            binding.option2.setBackgroundColor(Color.rgb(100,255,100))
-            nQDelay()
+            newQuestion()
             increaseScore()
         }
         else{
-            binding.option2.setBackgroundColor(Color.rgb(255,87,51))
             wrongAnswer()
             wrongAnswerCounter()
         }
@@ -188,22 +164,18 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun option3(view: View){
-        disableButtons()
-        binding.option3.setTextColor(Color.BLACK)
 
         if (pastQuestions.size == 250){
-            val intent = Intent(this@GameActivity, FinishActivity::class.java)
+            val intent = Intent(this@SpeedRunActivity, FinishActivity::class.java)
             intent.putExtra("score", score)
             startActivity(intent)
         }
 
         else if (countryData.data[currentFlag.toInt()].name == binding.option3.text) {
-            binding.option3.setBackgroundColor(Color.rgb(100,255,100))
-            nQDelay()
+            newQuestion()
             increaseScore()
         }
         else{
-            binding.option3.setBackgroundColor(Color.rgb(255,87,51))
             wrongAnswer()
             wrongAnswerCounter()
         }
@@ -212,22 +184,18 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun option4(view: View){
-        disableButtons()
-        binding.option4.setTextColor(Color.BLACK)
 
         if (pastQuestions.size == 250){
-            val intent = Intent(this@GameActivity, FinishActivity::class.java)
+            val intent = Intent(this@SpeedRunActivity, FinishActivity::class.java)
             intent.putExtra("score", score)
             startActivity(intent)
         }
 
         else if (countryData.data[currentFlag.toInt()].name == binding.option4.text) {
-            binding.option4.setBackgroundColor(Color.rgb(100,255,100))
-            nQDelay()
+            newQuestion()
             increaseScore()
         }
         else{
-            binding.option4.setBackgroundColor(Color.rgb(255,87,51))
             wrongAnswer()
             wrongAnswerCounter()
         }
@@ -235,26 +203,20 @@ class GameActivity : AppCompatActivity() {
 
     }
 
-    private fun disableButtons(){
-        binding.option1.setEnabled(false)
-        binding.option2.setEnabled(false)
-        binding.option3.setEnabled(false)
-        binding.option4.setEnabled(false)
-    }
 
     private fun wrongAnswer(){
-        changeCorrectAnswerToGreen()
-        nQDelay()
+        newQuestion()
     }
 
     private fun wrongAnswerCounter(){
         wrongAnswerCount--
         if (wrongAnswerCount == 0){
             binding.cross1.visibility = View.INVISIBLE
-            Toast.makeText(this@GameActivity, "Game Over", Toast.LENGTH_LONG).show()
-            val intent = Intent(this@GameActivity, MainActivity::class.java)
+            Toast.makeText(this@SpeedRunActivity, "Game Over", Toast.LENGTH_LONG).show()
+            val intent = Intent(this@SpeedRunActivity, MainActivity::class.java)
             intent.putExtra("score", score)
             startActivity(intent)
+            finish()
 
         }
         else if (wrongAnswerCount == 1){
@@ -272,17 +234,5 @@ class GameActivity : AppCompatActivity() {
         binding.scoreText.text = "Score: ${score}"
     }
 
-    fun changeCorrectAnswerToGreen(){
-        when(randomOption){
-            1 -> {binding.option1.setBackgroundColor(Color.rgb(100,255,100))
-                binding.option1.setTextColor(Color.BLACK)}
-            2 -> {binding.option2.setBackgroundColor(Color.rgb(100,255,100))
-                binding.option2.setTextColor(Color.BLACK)}
-            3 -> {binding.option3.setBackgroundColor(Color.rgb(100,255,100))
-                binding.option3.setTextColor(Color.BLACK)}
-            4 -> {binding.option4.setBackgroundColor(Color.rgb(100,255,100))
-                binding.option4.setTextColor(Color.BLACK)}
 
-        }
-    }
 }

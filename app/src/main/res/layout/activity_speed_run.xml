@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameActivity">
+    tools:context=".SpeedRunActivity">
 
     <LinearLayout
         android:id="@+id/linearLayoutTop"
@@ -105,17 +105,17 @@
 
     <TextView
         android:id="@+id/scoreText"
-        android:layout_width="136dp"
-        android:layout_height="32dp"
+        android:layout_width="143dp"
+        android:layout_height="33dp"
         android:layout_marginBottom="16dp"
         android:text="Score: 0"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/questionFlag"
         app:layout_constraintEnd_toEndOf="@+id/questionFlag"
-        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="@+id/questionFlag"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.818" />
+        app:layout_constraintVertical_bias="0.761" />
 
     <ImageView
         android:id="@+id/cross3"
